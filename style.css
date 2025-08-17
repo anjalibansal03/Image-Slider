@@ -1,0 +1,114 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 1% 1%;
+  text-align: center;
+}
+
+/* Slider container */
+main {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;      /* Keep max width for large screens */
+  margin: auto;
+  overflow: hidden;
+
+  /* Maintain proportional height (1000x500 = 2:1 ratio) */
+  aspect-ratio: 2 / 1;
+}
+
+/* Slides */
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Keeps images proportional */
+  transition: transform 0.5s ease-in-out;
+  z-index: 1; /* Keep slides behind buttons */
+}
+
+/* Navigation buttons container */
+.nav {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  padding: 0 10px;
+  box-sizing: border-box;
+  z-index: 10; /* Always above slides */
+  pointer-events: none; /* container ignores taps */
+}
+
+/* Buttons */
+.nav button {
+  pointer-events: auto; /* buttons stay clickable */
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 22px; /* bigger for touch */
+  border-radius: 50%;
+  opacity: 0; /* Hidden by default (desktop) */
+  transition: opacity 0.3s ease;
+  z-index: 11; /* Always on top */
+  line-height: 1;
+}
+
+/* Show buttons on hover (desktop only) */
+main:hover .nav button {
+  opacity: 1;
+}
+
+/* Pagination dots */
+.pagination {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.pagination span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 5px;
+  background-color: #bbb;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination span.active {
+  background-color: #333;
+}
+
+/* 📱 Mobile adjustments */
+@media (max-width: 768px) {
+  main {
+    aspect-ratio: 16 / 9; /* Friendlier ratio for phones */
+  }
+
+  h1 {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+
+  .nav button {
+    opacity: 1; /* Always visible on mobile */
+    font-size: 18px;
+    padding: 6px 10px;
+  }
+
+  .pagination span {
+    width: 8px;
+    height: 8px;
+  }
+}
