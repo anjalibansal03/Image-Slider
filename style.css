@@ -1,0 +1,112 @@
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 1% 1%;
+  text-align: center;
+}
+
+/* Slider container */
+main {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;      /* Keep max width for large screens */
+  margin: auto;
+  overflow: hidden;
+
+  /* Maintain proportional height (1000x500 = 2:1 ratio) */
+  aspect-ratio: 2 / 1;
+}
+
+/* Slides */
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Keeps images proportional */
+  transition: transform 0.5s ease-in-out;
+  z-index: 1; 
+}
+
+/* Navigation buttons container */
+.nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  padding: 0 10px;
+  box-sizing: border-box;
+  pointer-events: none; /* Prevent nav box from blocking clicks */
+  z-index: 2;
+}
+
+/* Buttons */
+.nav button {
+  pointer-events: auto; /* Buttons remain clickable */
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 5px;
+  opacity: 0; /* Hidden by default (desktop) */
+  transition: opacity 0.3s ease;
+}
+
+/* Show buttons on hover (desktop only) */
+main:hover .nav button {
+  opacity: 1;
+}
+
+/* Pagination dots */
+.pagination {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.pagination span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 5px;
+  background-color: #bbb;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination span.active {
+  background-color: #333;
+}
+
+/* 📱 Mobile adjustments */
+@media (max-width: 768px) {
+  main {
+    aspect-ratio: 16 / 9; /* Friendlier ratio for phones */
+  }
+
+  h1 {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+
+  .nav button {
+    opacity: 1; /* Always visible on mobile */
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+
+  .pagination span {
+    width: 8px;
+    height: 8px;
+  }
+}
